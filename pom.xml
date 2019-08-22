@@ -43,6 +43,11 @@
             <name>Marc Philipp</name>
             <email>mail@marcphilipp.de</email>
         </developer>
+        <developer>
+            <id>bhaskernitt</id>
+            <name>nandkishor bhasker</name>
+            <email>bhasker.nandkishor@gmail.com</email>
+        </developer>
     </developers>
     <contributors>
         <contributor>
@@ -72,8 +77,8 @@
         <connection>scm:git:git://github.com/junit-team/junit4.git</connection>
         <developerConnection>scm:git:git@github.com:junit-team/junit4.git</developerConnection>
         <url>http://github.com/junit-team/junit4/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <issueManagement>
         <system>github</system>
         <url>https://github.com/junit-team/junit4/issues</url>
@@ -104,6 +109,8 @@
         <jdkVersion>1.5</jdkVersion>
         <surefireVersion>2.19.1</surefireVersion>
         <hamcrestVersion>1.3</hamcrestVersion>
+        <okHttpVersion>2.7.5</okHttpVersion>
+        <jettyServerVersion>9.4.20.v20190813</jettyServerVersion>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <arguments />
         <gpg.keyname>67893CC4</gpg.keyname>
@@ -122,6 +129,18 @@
             <version>${hamcrestVersion}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okHttpVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jettyServerVersion}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -362,7 +381,7 @@
                         </manifest>
                         <manifestEntries>
                             <Automatic-Module-Name>junit</Automatic-Module-Name>
-                        </manifestEntries>                        
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
