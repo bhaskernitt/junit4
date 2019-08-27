@@ -58,6 +58,8 @@ public class JettyServerFactory {
     public static void createWebAppServer() {
         try {
             Server server = createBaseServer();
+            server.setHandler(new HelloHandler());
+
             server.start();
             server.join();
         }
@@ -81,7 +83,7 @@ public class JettyServerFactory {
      */
     public static Server createMultiHandlerServer() {
         Server server = createBaseServer();
-
+server.setHandler(new HelloHandler());
         // Creates the handlers and adds them to the server.
         HandlerCollection handlers = new HandlerCollection();
 

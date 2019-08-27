@@ -5,6 +5,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import junit.apiFramework.TestApi;
 import junit.apiFramework.TestApis;
+import junit.apiFramework.client.http.HttpClient;
 import junit.apiFramework.invoker.InvokeApiMethodAndApis;
 import junit.apiFramework.invoker.InvokeApis;
 import junit.apiFramework.server.JettyServer;
@@ -337,22 +338,27 @@ public class BlockJUnit4ApiClassRunner extends ParentRunner<FrameworkMethod> {
            Thread t=new Thread(r);
            t.start();
 
-           //JettyServer jettyServer = new JettyServer();
-           //jettyServer.start();
-
-           String url = "http://localhost:8091/heavy/async";
-
-
            OkHttpClient client = new OkHttpClient();
 
-               final Request request = new Request.Builder()
-                       .url("http://localhost:8091/heavy/async")
-                       .build();
+
+
 
 
                        try {
-                           Response response = client.newCall(request).execute();
+                           Response response= new HttpClient.HttpClientBuilder()
+                                   .setUrl("http://localhost:8091/heavy/async")
+                                   .setMethod("GET")
+                                   .send().getResponse();
+
+                           Response response1= new HttpClient.HttpClientBuilder()
+                                   .setUrl("http://localhost:8091/heavy/async11")
+                                   .setMethod("POST")
+                                   .setPayload("{\"a\":\"a\"}")
+                                   .send().getResponse();
+                          // Response response = client.newCall(request).execute();
                            System.out.println(new String(response.body().bytes()));
+
+                           System.out.println(new String(response1.body().bytes()));
                        } catch (IOException e) {
                            e.printStackTrace();
                        }
